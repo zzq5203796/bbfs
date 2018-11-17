@@ -1,0 +1,137 @@
+{
+  "menu": [
+    {
+      "name": "快速链接",
+      "url": "#",
+      "hide": true,
+      "child": [
+        {
+          "name": "info",
+          "url": "#",
+          "child": [
+            {
+              "name": "phpinfo",
+              "url": "/?a=phpinfo",
+              "child": []
+            },
+            {
+              "name": "server",
+              "url": "/?a=server",
+              "child": []
+            }
+          ]
+        },
+        {
+          "name": "百度",
+          "url": "http://baidu.com",
+          "child": []
+        },
+        {
+          "name": "百度翻译",
+          "url": "http://fanyi.baidu.com/translate",
+          "child": []
+        }
+      ]
+    },
+    {
+      "name": "手册",
+      "url": "#",
+      "hide": true,
+      "child": [
+        {
+          "name": "tp5.0手册",
+          "url": "https://www.kancloud.cn/manual/thinkphp5/125019",
+          "child": []
+        },
+        {
+          "name": "layer",
+          "url": "http://layer.layui.com/",
+          "child": []
+        },
+        {
+          "name": "icon",
+          "url": "/font_at8tu8bzfai/demo_fontclass.html",
+          "child": []
+        },
+        {
+          "name": "jquery",
+          "url": "http://www.w3school.com.cn/jquery/index.asp",
+          "child": []
+        }
+      ]
+    },
+    {
+      "name": "资源",
+      "url": "#",
+      "hide": true,
+      "child": [
+        {
+          "name": "快输检测",
+          "url": "/reptile/index",
+          "hide": true,
+          "child": []
+        },
+        {
+          "name": "爱读书",
+          "url": "/template/book.html",
+          "hide": true,
+          "child": []
+        },
+        {
+          "name": "黑漫",
+          "url": "/reptile/manhua",
+          "hide": true,
+          "child": []
+        },
+        {
+          "name": "加解密",
+          "url": "/crypt/index",
+          "hide": true,
+          "child": []
+        },
+        {
+          "name": "LOGO大法",
+          "url": "/image/logo",
+          "hide": true,
+          "child": []
+        }
+      ]
+    },
+    
+    {
+      "name": "管理中心",
+      "url": "#",
+      "child": [
+        {
+          "name": "设置",
+          "url": "#",
+          "hide": true,
+          "child": [
+            {
+              "name": "hosts",
+              "url": "/setting/hosts"
+            }
+          ]
+        },
+        {
+          "name": "密钥设置",
+          "url": "/crypt",
+          "hide": true
+        },
+        {
+          "name": "菜单管理",
+          "url": "/menu",
+          "hide": true
+        },
+        {
+          "name": "用户",
+          "url": "/user",
+          "hide": true
+        }
+      ]
+    }
+  ],
+  "dir": {
+    "template": "模板"
+  }
+}
