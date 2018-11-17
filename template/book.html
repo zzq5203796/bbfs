@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ch-zn">
+<head>
+    <meta charset="UTF-8">
+    <title>小流氓科研中心</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="shortcut icon" href="/public/images/ico/spider2.png">
+
+    <link rel="stylesheet" href="/public/static/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/css/iconfont.css?t=123" media="all">
+    <link rel="stylesheet" href="/css/bbf.css?t=123" media="all">
+    <link rel="stylesheet" href="/css/book.css?t=123" media="all">
+
+    <script type="text/javascript" src="/js/libs/jquery.min.js"></script>
+    <script type="text/javascript" src="/public/static/layui/layui.all.js"></script>
+    <script type="text/javascript" src="/js/libs/art-template/template-web.js"></script>
+</head>
+<style>
+</style>
+<body>
+<div class="window">
+    <div class="search-box">
+
+    </div>
+    <div class="book-table">
+        <div style="padding: 4px 6px;"> books
+
+            <div class="search-keyword-box fr">
+                <input name="keyword" class="keyword" value="" placeholder="你输入书本"/>
+                <div class="btn">搜索</div>
+            </div>
+            <div style="clear: both; height: 0px;"></div>
+        </div>
+    </div>
+    <div class="search-table">
+        <div> books</div>
+    </div>
+    <div class="progress" style="position: fixed; top:0; width: 660px;">
+    </div>
+</div>
+
+<script type="text/html" id="bookItem">
+    <tr>
+        {{include 'tableViewItemCheckId'}}
+        <td><%= item.id %></td>
+        <td><%= item.title %></td>
+        <td>
+            <a href="<%= opts.link.check %><%= item.id %>" class="line-1" target="_blank">检查</a>
+            | <a href="<%= opts.link.run %><%= item.id %>" class="line-1" target="_blank">蜘蛛</a>
+            | <a href="<%= opts.link.down %><%= item.id %>" class="line-1">下载</a>
+            | <a href="<%= opts.link.read %><%= item.id %>" class="line-1" target="_blank">阅读</a>
+        </td>
+        <td>
+            <span class="red line-1">{{item.num}}章</span>
+        </td>
+        <td>
+            {{if item.lock_book }}
+            <a url="<%= opts.link.unlock %>{{item.id}}&type=book" class="ajax ajax-post" ajax-data="<%= item %>"
+               ajax-cb="bookRefresh" target="_blank">[读锁]</a>
+            {{else/}}
+            <a class="btn-disable">[读锁]</a>
+            {{/if}}
+            |
+            {{if item.lock_down }}
+            <a url="<%= opts.link.unlock %><%= item.id %>&type=down" class="ajax ajax-post" ajax-data="<%= item %>"
+                 ajax-cb="bookRefresh">[下载]</a>
+            {{else/}}
+            <a url="{{opts.link.down}}{{item.id}}&type=pack"  class="ajax ajax-post" ajax-cb="bookRefresh">[打包]</a>
+            {{/if}}
+
+        </td>
+        <td>
+            <a href="<%= item.link %>" target="_blank">目录</a>
+            | <a href="<%= item.first_link %>" target="_blank">首页</a>
+            | <a href="javascript:void(0);" class="do-pro">进度条</a>
+        </td>
+        <td>
+            <a url="/article/bookover" class="ajax ajax-post" href="javascript:void(0);" ajax-data="<%= item %>"
+               ajax-cb="bookRefresh" target="_blank">完结</a>
+            | <a url="/article/delete" class="ajax ajax-post" href="javascript:void(0);" ajax-data="<%= item %>"
+                 ajax-cb="bookRefresh" target="_blank">删除</a>
+        </td>
+        <td>
+        </td>
+    </tr>
+</script>
+
+<script type="text/html" id="searchItem">
+    <% if(item.title_link){ %>
+    <tr>
+        {{include 'tableViewItemCheckId'}}
+        <td>{{i+1}}</td>
+        <td>{{item.type}}</td>
+        <td><a href="{{item.title_link}}" target="_blank">{{item.title}}</a></td>
+        <td><a href="{{item.title_link}}" target="_blank">{{item.new}}</a></td>
+        <td>{{item.author}}</td>
+        <td>{{item.click}}</td>
+        <td>{{item.update}}</td>
+        <td>{{item.status}}</td>
+        <td>
+            <a url="/article/check/" class="ajax ajax-post" href="javascript:void(0);" ajax-data="<%= item %>"
+               target="_blank">检查</a>
+            | <a url="/article/checkdir" class="ajax ajax-post" href="javascript:void(0);" ajax-data="<%= item %>"
+                 target="_blank">目录</a>
+            | <a url="/article/join" class="ajax ajax-post" href="javascript:void(0);" ajax-data="<%= item %>"
+                 ajax-cb="bookRefresh" target="_blank">加入</a>
+            | <a href="<%= opts.url.read %><%= item.id %>" target="_blank">阅读</a>
+        </td>
+    </tr>
+    <% } %>
+</script>
+
+<script type="text/html" id="progressItem">
+    <div style="height:45px;overflow:hidden;">
+        <div style="position: relative; height: 0; top:15px; left: 50px;"> 等待加载</div>
+        <iframe id="{{id}}" src="{{url}}" name="t2"></iframe>
+    </div>
+</script>
+
+</body>
+
+<script type="text/javascript" src="/public/min/js/common.min.js"></script>
+<script type="text/javascript" src="/js/table.js"></script>
+<script type="text/javascript" src="/js/book.js"></script>
+<script type="application/javascript">
+
+</script>
+</html>

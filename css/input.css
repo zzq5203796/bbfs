@@ -1,0 +1,93 @@
+.bbf-checkbox {
+    display: inline-block;
+    position: relative;
+    width: 18px;
+    height: 18px;
+    background: #fff0 url('/public/images/select/blue-3.png') no-repeat 0px 0px;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.bbf-checkbox:hover {
+    background-position: -18px 0;
+}
+
+.bbf-checkbox.checked {
+    background-position: -36px 0;
+}
+
+.bbf-checkbox input {
+    opacity: 0;
+    display: none;
+}
+
+.search-keyword-box, .search-keyword-box * {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.search-keyword-box {
+    position: relative;
+    width: 220px;
+    height: 32px;
+    padding-right: 50px;
+    border: 1px solid #eee;
+}
+
+.search-keyword-box input {
+    width: 100%;
+    padding: 0 4px;
+}
+
+.search-keyword-box .btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    text-align: center;
+}
+
+.input-box {
+    display: inline-block;
+    padding: 0 2px;
+    margin-right: 10px;
+}
+
+.input-box label {
+
+}
+
+.input-box input {
+
+}
+
+.input-text , .input-select{
+    padding: 2px;
+}
+
+.input-text label {
+
+}
+
+.input-text input, .input-select select{
+    padding: 5px 5px 5px 5px;
+    margin-left: 5px;
+    vertical-align:middle;
+}
+.input-money input{
+    width: 90px;
+}
+.input-info div{
+    display: inline-block;
+    padding: 5px 5px;
+    margin-left: 5px;
+}
+.input-select select{
+    padding: 5px 5px;
+}

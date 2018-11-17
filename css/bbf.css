@@ -1,0 +1,239 @@
+@import "bbf.base.css";
+@import "icon.css";
+@import "page.css";
+@import "input.css";
+
+.scale-8 {
+    transform: scale(0.8, 0.8);
+}
+
+/* bbf-div-box statr */
+.bbf-div-box {
+    position: relative;
+    width: 420px;
+    background: #f9cc9d;
+    padding: 30px;
+    display: inline-block;
+}
+
+.bbf-div-box .bbf-div-name {
+    position: absolute;
+    width: 100%;
+    line-height: 30px;
+    text-align: center;
+    left: 0;
+    top: 0;
+    font-size: 16px;
+}
+
+.bbf-div-box .next .bbf-div-name {
+    top: 30px;
+}
+
+.bbf-div-box .bbf-div-name .bbf-input {
+    width: 64px;
+    padding: 6px 8px;
+    margin-left: 5px;
+    border: 0;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.bbf-input-title, .bbf-input-text {
+    width: 60px;
+    color: #424242;
+    text-align: right;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.bbf-input-text {
+    text-align: left;
+}
+
+.bbf-div-box .bbf-div-box-item {
+    position: relative;
+    padding: 30px;
+    background: #bcad3f;
+}
+
+.bbf-div-box > .bbf-div-box-item > .bbf-div-box-item {
+    background: #fddd9d;
+}
+
+.bbf-div-box > .bbf-div-box-item > .bbf-div-box-item > .bbf-div-box-item {
+    background: #8bb5c0;
+}
+
+/* bbf-div-box end */
+
+/* bbf-div-box-new start */
+.bbf-div-box.bbf-div-box-new {
+    width: 336px;
+}
+
+.bbf-div-box.bbf-div-box-new, .bbf-div-box.bbf-div-box-new .bbf-div-box-item {
+    padding: 24px;
+}
+
+.bbf-div-box.bbf-div-box-new .bbf-div-name {
+    line-height: 24px;
+}
+
+.bbf-div-box.bbf-div-box-new .next .bbf-div-name {
+    top: 24px;
+}
+
+.bbf-div-box.bbf-div-box-new .bbf-div-name .bbf-input {
+    font-size: 14px;
+    width: 52px;
+    padding: 5px 7px;
+}
+
+.bbf-div-box-new .bbf-input-title, .bbf-div-box-new .bbf-input-text {
+    width: 48px;
+}
+
+/* bbf-div-box-new end */
+
+.table {
+    display: table;
+}
+
+.table > div {
+    display: table-cell;
+}
+
+.table > div {
+    background: #f5f5f5;
+    padding: 0px 0px 4px 0px;
+    border: 1px solid #fff;
+}
+
+.table > div:nth-of-type(odd) {
+    background: #e6e6e6;
+}
+
+.table > div span {
+    background: #f5f5f5;
+}
+
+.table > div:nth-of-type(odd) span {
+    background: #e6e6e6;
+}
+
+.close-window {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: +99999;
+    max-width: 36px;
+    max-height: 36px;
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: 9px;
+    background: #f5f5f5;
+    display: none;
+}
+
+.close-window:hover {
+    background: #e5e5e5;
+}
+
+.full-window.in-full {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f5f5f5;
+    z-index: +99900;
+}
+
+.progress-bar {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 20px;
+    border: 1px solid #ddd;
+    float: left;
+}
+
+.progress-bar .bar {
+    background: #0d7bea;
+    height: 100%;
+    width: 0%;
+    position: relative;
+}
+
+.progress-bar .bar:after {
+    content: attr(data-afterContent);
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.auto-box {
+    padding: 2px 4px;
+}
+
+/* tabs */
+.bbf-tabs {
+    position: relative;
+}
+
+.bbf-tabs .bbf-tabs-list, .bbf-tabs .bbf-tabs-select {
+    position: relative;
+}
+
+.bbf-tabs .bbf-tabs-item {
+    cursor: pointer;
+    display: inline-block;
+    min-width: 30px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    background: #eee;
+    padding: 2px 4px;
+}
+
+.bbf-tabs .bbf-tabs-item.active, .bbf-tabs.bbf-tabs-item:hover {
+    background: #0d7bea;
+}
+
+.bbf-tabs .bbf-tabs-list .bbf-tabs-list-item {
+    display: none;
+}
+
+.keycontent, .keycontent1{
+    background: #0C0C0C;
+    padding: 0 8px;
+    margin: 0 -10px 0 -10px;
+    position: relative;
+    z-index: +1;
+}
+
+.keycontent p {
+    padding: 4px 0;
+    color: #ccc;
+}
+.keycontent1 p{
+    padding: 4px 0;
+}
+.keycontent p:last-child,.keycontent1 p:last-child {
+    padding-bottom: 10px;
+}
+.ajax{
+    cursor: pointer;
+    white-space: nowrap;
+}
+.op5{
+    opacity: 0.5;
+}
+.line-1{
+    white-space: nowrap;
+}
+.btn-disable{
+    cursor: not-allowed;
+    opacity: 0.5;
+    white-space: nowrap;
+}

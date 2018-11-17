@@ -1,0 +1,145 @@
+<?php
+    $bg = empty($fields['bg'])? '': $fields['bg'];
+    switch($bg){
+    case 'mdn':
+        view("../template/demo/mdn/demo", []);
+        break;
+    case 'sky':
+        view("bg/sky/index", []);
+        break;
+    default:
+        // 
+        break;
+    }
+
+    global $_view__list_name;
+    $_view_name = "table-form";
+
+    if(empty($_view__list_name[$_view_name])){
+        $_view__list_name[$_view_name] = 1;
+?>
+<script type="text/javascript" src="/js/libs/jquery.min.js"></script>
+<style>
+    html {
+        background: #f0f0f0;
+    }
+
+    body {
+        margin: 0;
+        min-width: 600px;
+        width: 90%;
+        margin: 0 auto;
+        padding: 20px 20px 1px 20px;
+        background: #fff;
+    }
+
+    form {
+        margin-bottom: 14px;
+    }
+
+    table{
+        border-width: 0;
+        border-spacing: 0;
+    }
+    table thead td{
+        height: 30px;
+    }
+    td{
+        border-width: 0;
+    }
+    .table-form input {
+        height: 28px;
+        padding: 0 8px;
+        border: 0;
+        background: #fff0;
+    }
+    .table-form tr{
+        background: #f9f9f9;
+    }
+    .table-form tbody tr:nth-child(3n+0) {
+        background: #f9f9f9;
+    }
+    .table-form tbody tr:nth-child(3n+1) {
+        background: #f5f5f5;
+    }
+    .table-form tbody tr:nth-child(3n+2) {
+        background: #f0f0f0;
+    }
+    .table-form tbody tr td {
+        /*border-top: 1px solid #f0f0f0;*/
+    }
+    span {
+        margin-right: 10px;
+    }
+</style>
+<?php } ?>
+<?php
+$fileds_keys = $fields['fields'];
+$data = $fields['data'];
+?>
+<div class="form-box">
+    <table class="table-form">
+        <thead>
+        <tr>
+            <?php foreach($fileds_keys as $field){
+                $opt = default_empty_value($field, 3, []);
+                $width =  default_empty_value($opt, 'width', 'auto');
+?>
+            <td style="width: <?php  echo $width; ?>"><?php echo $field[1]; ?></td>
+            <?php } ?>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        <form action='' method='post'>
+            <tr>
+                <?php foreach($fileds_keys as $field){
+                $opt = default_empty_value($field, 3, []);
+                $width =  default_empty_value($opt, 'width', 'auto');
+?>
+                <td><input type="<?php echo $field[2]; ?>" placeholder="请输入<?php  echo $field[1]; ?>" style="width: <?php  echo $width; ?>" name='<?php echo $field[0]; ?>' value=""/></td>
+                <?php } ?>
+                <td>
+                    <input type="hidden" name='subtype' value="add"/>
+                    <input type="submit" value="添加"/>
+            </tr>
+        </form>
+        <?php foreach($data as $vo){?>
+        <form action='' method='post'>
+            <tr>
+                <?php foreach($fileds_keys as $field){
+?>
+                <td><?php echo this_input($field, $vo); ?></td>
+                <?php } ?>
+                <td>
+                    <input type="hidden" name='subtype' value="edit"/>
+                    <input type="submit" value="保存"/>
+                    <input type="button" value="删除"
+                           onclick="$(this).prev().prev().val('delete');$(this).attr('type', 'submit');$(this).click();"/></td>
+            </tr>
+        </form>
+        <?php } ?>
+        </tbody>
+    </table>
+</div>
+<?php
+function this_input($field, $data){
+    list($name, $title, $type, $opt) = $field;
+    $width =  'width:'.default_empty_value($opt, 'width', 'auto');
+    $style = 'style="'. $width. '"';
+    switch($type){
+        case 'textarea':
+        $str = '<textarea name=".$name.">'. $data[$name] .'</textarea>';
+        break;
+        default:
+        $str = '<input '.$style.' type="text" name="'. $name .'" value="'. $data[$name] .'"/>';
+        break;
+    }
+
+    return $str;
+
+}
+
+
+
+ ?>

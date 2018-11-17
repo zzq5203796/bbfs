@@ -1,0 +1,169 @@
+<?php if($fields['type'] == 'create'){ ?>
+    <?php if($fields['is_new']){ ?>
+    <style>
+        body {
+            background: #fff;
+        }
+
+        .progress-bar-box {
+            width: 99%;
+            max-width: 780px;
+        }
+
+        .progress-bar-box > div {
+            float: left;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        .progress-bar-box .progress-lable {
+            max-width: 48px;
+            padding: 0 4px 0 0;
+        }
+
+        .progress-bar-box .progress-bar {
+            width: 100%;
+            max-width: 500px;
+            border: #000000 solid 1px;
+        }
+
+        .progress-bar-box .progress-num {
+            width: 45px;
+            padding-left: 5px;
+        }
+
+        .progress-bar-box .progress-bar .progress-jump {
+            background: #0000FF;
+            width: 1px;
+            height: 100%;
+            transition: width 1.5s;
+        }
+        .progress-bar-box .line{
+            clear: both; 
+            float: unset;
+            height: 0;
+        }
+        .progress-bar-box > div.progress-info, .progress-bar-box > div.progress-msg{
+            padding: 10px 0 10px 2%;
+            height: auto;
+            min-width: 100px;
+            width: 46%;
+            background: #eee;
+            margin-top: 10px;
+        }
+        .progress-info .msg, .progress-msg .msg{
+            padding-left: 10px;
+        }
+        .progress-bar-box .progress-bar-other{
+            width: 100%;
+            height: auto;
+        }
+        .progress-bar-other .progress-bar-box{
+            margin: 10px 0;
+        }
+    </style>
+    <?php }else{ echo '</div>';/*todo*/} ?>
+    <div class="progress-bar-box">
+        <div id="progress-lable" class="progress-lable">
+            <?php echo default_empty_value($fields, 'title', "进度"); ?>
+        </div>
+        <div class="progress-bar">
+            <div id="progress-jump" class="progress-jump"></div>
+        </div>
+        <div id="progress-num" class="progress-num"></div>
+        <div class="line"></div>
+
+        <div id="progress-bar-other" class="progress-bar-other">
+        </div>
+
+        <?php if($fields['is_new']){ ?>
+        <div  class="progress-msg"> 
+            msg >>> 
+            <div id="progress-msg" class="msg"></div>
+        </div>
+        <div style="width:2%;"></div>
+        <div class="progress-info">
+            info >>> 
+            <div id="progress-info" class="msg"></div>
+        </div>
+        <?php } ?>
+    </div>
+
+<script type="text/jscript">
+    var PROGRESS={}, opt = <?php echo json_encode($fields); ?>;
+    PROGRESS[opt.id] = {
+        info: document.getElementById("progress-info"),
+        msg: document.getElementById("progress-msg"),
+        jump: document.getElementById("progress-jump"),
+        num: document.getElementById("progress-num"),
+    };
+    function show_ob(value, opt){
+        document.title = value;
+        PROGRESS[opt.id].jump.style.width = value;
+        PROGRESS[opt.id].num.innerHTML = value;
+        if(opt.msg) {
+            appendDom(PROGRESS[opt.id].msg, opt.msg);
+            document.title = value+' '+opt.msg.replace(/<[^>]*>|/g,"");
+        }
+        if(opt.info)
+            appendDom(PROGRESS[opt.id].info, opt.info);
+    }
+    function appendDom(OBJ, text){
+        var newItem=document.createElement("div");
+        var textnode=document.createTextNode(text);
+        newItem.innerHTML = text;
+
+        OBJ.appendChild(newItem);
+        if(OBJ.childNodes.length > 10){
+            OBJ.removeChild(OBJ.childNodes[0])
+        }
+    }
+    function addBar(opt){
+        var str = '<div class="progress-bar-box">'
+            +'<div id="progress-lable-'+opt.id+'" class="progress-lable">'
+            + (opt.title? opt.title: '进度')
+            +'</div>'
+            +'<div class="progress-bar"><div id="progress-jump-' + opt.id + '" class="progress-jump"></div></div>'
+            +'<div id="progress-num-' + opt.id + '" class="progress-num"></div><div class="line"></div>';
+
+        var para=document.createElement("div");
+        para.innerHTML = str;
+        document.getElementById("progress-bar-other").appendChild(para);
+    }
+    show_ob(0, opt);
+</script>
+<div id="scriptBox">
+<?php } ?>
+
+<?php if($fields['type'] == 'push'){ ?>
+    <script>
+        var opt = <?php echo json_encode($fields); ?>;
+        var id = opt.id;
+        if(!PROGRESS[id]){
+            addBar(opt);
+            PROGRESS[id] = {
+                jump: document.getElementById("progress-jump-"+id),
+                num: document.getElementById("progress-num-"+id),
+                msg: document.getElementById("progress-msg"),
+                info: document.getElementById("progress-info"),
+            }
+        }
+        show_ob("<?php echo $fields['value']; ?>", opt);
+    </script>
+
+    <?php if($fields['clear']){ ?>
+    </div>
+    <div id="scriptBox">
+        <script>
+            console.log(opt);
+            var child = document.getElementById("scriptBox");
+            
+        </script>
+    <?php } ?>
+
+    <?php if($fields['end']){ ?>
+    <script>parent.close_progress && parent.close_progress(this.frameElement.id)</script>
+    </div>
+    <?php } ?>
+
+<?php } ?>

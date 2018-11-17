@@ -1,0 +1,69 @@
+<script type="text/html" id="tableView">
+    <div class="table-search">
+    </div>
+    <table class="book-box">
+        <thead>
+        <tr>
+            {{if opts.select.show}}
+            <td class="" style="text-align: center;">
+                <div class="bbf-checkbox bbf-checkbox-all">
+                    <input name="checkAllIds" class="checkAll" type="checkbox" />
+                </div>
+            </td>
+            {{/if}}
+            <% for (var i = 0; i < list.length; i ++) { %>
+            <td class="">{{@list[i].title}}</td>
+            <% } %>
+        </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot class="page">
+        </tfoot>
+    </table>
+    <div class="table-footer">
+        <div class="tpage"></div>
+    </div>
+</script>
+
+<script type="text/html" id="tableViewSearch">
+</script>
+<script type="text/html" id="tableViewPage">
+    <div class="page">
+        <div class="first">首页</div>
+        <div class="prev">上一页</div>
+        {{if page.start>1}}
+        <div>...</div>
+        {{/if}}
+        <% for (var i = page.start; i <= page.end; i ++) { %>
+        <div onclick="{{opts.name}}.goPage({{i-1}})" class="<% if(page.paged == i){ %>on<% } %>">{{i}}</div>
+        <% } %>
+        {{if page.end < page.total}}
+        <div>...</div>
+        {{/if}}
+        <div class="next">下一页</div>
+        <div class="last">尾页</div>
+        <div>共{{opts.total}}条</div>
+        <div>第{{page.paged}}页</div>
+        <div>共{{opts.total_page}}页</div>
+        <input placeholder="页码" type="number"/>
+        <div>GO</div>
+    </div>
+</script>
+
+<script type="text/html" id="tableViewItem">
+    <tr>
+        {{include 'tableViewItemCheckId'}}
+        <% for (var k = 0; k < opts.data.length; k ++) { %>
+        <td class=""><%= item[opts.data[k].key] %></td>
+        <% } %>
+    </tr>
+</script>
+<script type="text/html" id="tableViewItemCheckId">
+    {{if opts.select.show }}
+    <td class="" style="text-align: center;">
+        <div class="bbf-checkbox">
+            <input name="checkIds[]" class="checkIds" type="checkbox" value="{{item[opts.id]}}" />
+        </div>
+    </td>
+    {{/if}}
+</script>
